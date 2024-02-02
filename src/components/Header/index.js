@@ -1,6 +1,6 @@
-import { HeaderContainer, HeaderContent, TextHeader } from "./style"
+import { HeaderContainer, HeaderContent, TextHeader } from "./style";
 
-export function Header() {
+export function Header(){
     return(
         <HeaderContainer>
             <HeaderContent>
@@ -8,4 +8,4 @@ export function Header() {
             </HeaderContent>
         </HeaderContainer>
     )
-};
+}
