@@ -1,25 +1,12 @@
 {
     "cep": [
         { 
-        "id": "09330390",
+        "id": 1,
         "logradouro": "Rádio Amador",
         "bairro": "Jardin Luzitano",
         "cidade": "Mauá",
         "estado": "São Paulo",
         "uf": "SP"
-    },
-    {
-        "id": "18295395",
-        "logradouro": "AAAAA",
-        "bairro": "AAAAA",
-        "cidade": "AAAA",
-        "estado": "AAAAAAAA",
-        "uf": "AA"
     }
-    
     ]
-    
-        
-
-
 }

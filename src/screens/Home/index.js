@@ -1,16 +1,35 @@
 import { useState } from "react";
 import { BoxInput } from "../../components/BoxInput";
 import { ContainerForm, ScrollForm, Form } from "./style";
+import Api from "../../api/api";
 
 export function Home() {
 
-  const[cep, setCep] = useState('09330390');
+  const[cep, setCep] = useState('');
   const[logradouro, setLogradouro] = useState('');
   const[bairro, setBairro] = useState('');
-  const[cidade, setCidade] = useState('');
-  const[estado, setEstado] = useState('');
+  const[localidade, setLocalidade] = useState('');
+  const[estado, setEstado] = useState(''); // NÃO ESTÁ FUNCIONANDO
   const[uf, setUf] = useState('');
 
+  async function buscarCep(){
+    if (cep == "") {
+      alert.alert("Cep")
+      setCep("")
+    }
+
+    try {
+      const response = await Api.get(`/${cep}/json/`)
+      setLogradouro(response.data.logradouro)
+      setBairro(response.data.bairro)
+      setLocalidade(response.data.localidade)
+      setUf(response.data.uf)
+      console.log(response)
+    } catch (error) {
+      console.log("Erro" + error)
+    }
+  }
+  
 
   return (
 <ScrollForm>
@@ -23,28 +42,29 @@ export function Home() {
         keyType='numeric'
         maxLength={9}
         fieldValue={cep}
+        onBlur={buscarCep()}
         onChangeText={tx => {setCep(tx)}}
       />
       <BoxInput
         textLabel='Logradouro'
         placeholder='Logradouro...'
         keyType='default'
-        maxLength={9}
+        maxLength={100}
         fieldValue={logradouro}
       />
       <BoxInput
         textLabel='Bairro'
         placeholder='Bairro...'
         keyType='default'
-        maxLength={9}
+        maxLength={100}
         fieldValue={bairro}
       />
       <BoxInput
         textLabel='Cidade'
         placeholder='Cidade...'
         keyType='default'
-        maxLength={9}
-        fieldValue={cidade}
+        maxLength={100}
+        fieldValue={localidade}
       />
 
     <Form>
@@ -52,9 +72,9 @@ export function Home() {
       <BoxInput
         fieldWidth={70}
         textLabel='Estado'
-        placeholder='Estado...'
+        placeholder='NÃO ESTÁ FUNCIONANDO...'
         keyType='default'
-        maxLength={9}
+        maxLength={100}
         fieldValue={estado}
       />
       <BoxInput
@@ -62,7 +82,7 @@ export function Home() {
         textLabel='UF'
         placeholder='UF'
         keyType='default'
-        maxLength={9}
+        maxLength={100}
         fieldValue={uf}
       />
 
